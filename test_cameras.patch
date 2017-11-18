@@ -1,0 +1,23 @@
+# Remove tests that rely on a true camera (cannont build in mock) and correct a path.
+--- SimpleCV/tests/test_cameras.py	2014-10-02 23:43:15.625676142 +0200
++++ SimpleCV/tests/test_cameras.py	2014-10-03 10:45:21.239674143 +0200
+@@ -5,7 +5,7 @@
+ from nose.tools import with_setup
+ 
+ 
+-testoutput = "sampleimages/cam.jpg"
++testoutput = "../sampleimages/cam.jpg"
+ 
+ 
+ def test_virtual_camera_constructor():
+@@ -19,10 +19,3 @@
+   
+   pass
+ 
+-def test_camera_image():
+-  mycam = Camera(0)
+-
+-  img = mycam.getImage()
+-  img.save(testoutput)
+-  pass
+-

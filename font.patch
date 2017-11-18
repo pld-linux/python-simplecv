@@ -1,0 +1,56 @@
+# Make sure that we use the packaged fonts and remove reference to unpackaged
+# fonts: ubuntu
+--- SimpleCV/Font.py	2014-10-03 11:43:11.086117096 +0200
++++ SimpleCV/Font.py	2014-10-03 15:24:38.348533743 +0200
+@@ -14,16 +14,15 @@
+     Font.printFonts()
+     """
+ 
+-    _fontpath = "SimpleCV/fonts/"
++    _fontpath = "/usr/share/fonts/"
+     _extension = ".ttf"
+-    _fontface = "ubuntu"
++    _fontface = "astloch"
+     _fontsize = 16
+     _font = None
+     
+     # These fonts were downloaded from Google at:
+     # http://www.http://www.google.com/webfonts
+     _fonts = [
+-					    "ubuntu",
+ 					    "astloch",
+ 					    "carter_one",
+ 					    "kranky",
+@@ -39,7 +38,7 @@
+ 					    ]
+     
+     
+-    def __init__(self, fontface = "ubuntu", fontsize = 16):
++    def __init__(self, fontface = "astloch", fontsize = 16):
+         """
+         This creates a new font object, it uses ubuntu as the default font
+         To give it a custom font you can just pass the absolute path
+@@ -57,20 +56,20 @@
+         """
+         return self._font
+     
+-    def setFont(self, new_font = 'ubuntu'):
++    def setFont(self, new_font = 'astloch'):
+         """
+         Set the name of the font listed in the font family
+         if the font isn't listed in the font family then pass it the absolute
+         path of the truetype font file.
+         Example: Font.setFont("/home/simplecv/my_font.ttf")
+         """
+-        if isinstance(new_font, basestring):
++        if not isinstance(new_font, basestring):
+             print "Please pass a string"
+             return None
+ 	        
+         if find(new_font, self._fonts):
+             self._fontface = new_font
+-            font_to_use = self._fontpath + self._fontface + "/" + self._fontface + self._extension
++            font_to_use = self._fontpath + self._fontface + "/" + self._fontface.capitalize() + self._extension
+         else:
+             self._fontface = new_font
+             font_to_use = new_font

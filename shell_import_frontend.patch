@@ -1,0 +1,31 @@
+# Fix the import from non existant package in ipython >= 2
+#See: https://github.com/sightmachine/SimpleCV/pull/582
+--- SimpleCV/Shell/Shell.py	2012-08-08 21:58:38.000000000 +0200
++++ SimpleCV/Shell/Shell.py	2014-12-07 17:35:06.494507973 +0100
+@@ -48,7 +48,10 @@
+   try:
+     import IPython
+     from IPython.config.loader import Config
+-    from IPython.frontend.terminal.embed import InteractiveShellEmbed
++    if IPython.version_info[0] >= 1:
++      from IPython.terminal.embed import InteractiveShellEmbed
++    else:
++      from IPython.frontend.terminal.embed import InteractiveShellEmbed
+     IPVER = 11
+   except Exception as e:
+     raise(e)
+@@ -163,8 +166,12 @@
+ 
+ def run_notebook():
+     'Run the ipython notebook server'
+-    from IPython.frontend.html.notebook import notebookapp
+-    from IPython.frontend.html.notebook import kernelmanager
++    if IPython.version_info[0] >= 2:
++        from IPython.html import notebookapp
++        from IPython.html.services.kernels import kernelmanager
++    else:
++        from IPython.frontend.html.notebook import notebookapp
++        from IPython.frontend.html.notebook import kernelmanager
+ 
+     code = ""
+     code += "from SimpleCV import *;"
