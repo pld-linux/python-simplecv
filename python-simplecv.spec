@@ -32,12 +32,20 @@ BuildRequires:	python-setuptools
 BuildRequires:	python-svgwrite
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
+%if 0
 Requires:	astloch-fonts
 Requires:	carterone-fonts
 Requires:	cyreal-wireone-fonts
 Requires:	kranky-fonts
 Requires:	labelleaurore-fonts
 Requires:	monofett-fonts
+Requires:	reeniebeanie-fonts
+Requires:	shadowsintolight-fonts
+Requires:	specialelite-fonts
+Requires:	unifrakturmaguntia-fonts
+Requires:	vt323-fonts
+Requires:	wallpoet-fonts
+%endif
 Requires:	python-flickrapi
 Requires:	python-ipython
 Requires:	python-numpy
@@ -46,12 +54,6 @@ Requires:	python-pillow
 Requires:	python-pygame
 Requires:	python-scipy
 Requires:	python-svgwrite
-Requires:	reeniebeanie-fonts
-Requires:	shadowsintolight-fonts
-Requires:	specialelite-fonts
-Requires:	unifrakturmaguntia-fonts
-Requires:	vt323-fonts
-Requires:	wallpoet-fonts
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
